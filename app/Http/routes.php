@@ -15,6 +15,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/home', function () {
+    return view('welcome');
+});
+
+
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -26,12 +32,77 @@ Route::get('/', function () {
 |
 */
 
-Route::group(['middleware' => ['web']], function () {
-    //
-});
+
 
 Route::group(['middleware' => 'web'], function () {
-    Route::auth();
 
-    Route::get('/home', 'HomeController@index');
+
+    //Route::get('/home', 'HomeController@index');
+
+
+
+    /*
+     |--------------------------------------------------------------------------
+     | Member Routes
+     |--------------------------------------------------------------------------
+     |
+     | Routes for internal Member users of application
+     |
+     */
+
+    $member = [
+        'namespace' => 'Member',
+        'prefix' => config('route.prefix.member'),
+        // 'middleware' => 'auth'
+    ];
+
+    Route::group($member, function () {
+
+        //Route::get('/', function () {
+        //    return view('home.index');
+        //});
+        Route::get('/','MemberController@index');
+        Route::get('/login','MemberController@login');
+        //Route::auth();
+
+
+    });
+
+
+
+
+    /*
+     |--------------------------------------------------------------------------
+     | Admin Routes
+     |--------------------------------------------------------------------------
+     |
+     | Routes for internal admin users of application
+     |
+     */
+
+    $admin = [
+        'namespace' => 'Admin',
+        'prefix' => config('route.prefix.admin'),
+       // 'middleware' => 'admin.auth'
+    ];
+
+    Route::group($admin, function () {
+
+        //Route::get('/', function () {
+        //    return view('admin.home');
+        //});
+        //Route::auth();
+        Route::get('/','AdminController@index');
+        Route::get('/login','AdminController@login');
+
+        Route::controllers([
+            'auth' => 'Auth\AuthController',
+            'password' => 'Auth\PasswordController',
+        ]);
+
+    });
+
+
 });
+
+
