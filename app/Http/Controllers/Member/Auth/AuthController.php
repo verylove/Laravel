@@ -10,6 +10,9 @@ use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
 class AuthController extends Controller
 {
+    private $loginView = 'member.auth.login';
+    private $registerView = 'member.auth.register';
+
     /*
     |--------------------------------------------------------------------------
     | Registration & Login Controller

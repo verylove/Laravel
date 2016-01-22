@@ -8,9 +8,6 @@ use Illuminate\Support\Facades\Auth;
 class AdminAuth
 
 {
-    protected $except = [
-        'login'
-    ];
 
     /**
      * Handle an incoming request.

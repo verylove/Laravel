@@ -39,8 +39,6 @@ Route::group(['middleware' => 'web'], function () {
 
     //Route::get('/home', 'HomeController@index');
 
-
-
     /*
      |--------------------------------------------------------------------------
      | Member Routes
@@ -53,18 +51,15 @@ Route::group(['middleware' => 'web'], function () {
     $member = [
         'namespace' => 'Member',
         'prefix' => config('route.prefix.member'),
-        // 'middleware' => 'auth'
     ];
 
     Route::group($member, function () {
 
-        //Route::get('/', function () {
-        //    return view('home.index');
-        //});
-        Route::get('/','MemberController@index');
-        Route::get('/login','MemberController@login');
-        //Route::auth();
+        Route::auth();
 
+        Route::group(['middleware' => 'member.auth'], function () {
+            Route::get('/','MemberController@index');
+        });
 
     });
 
@@ -83,23 +78,16 @@ Route::group(['middleware' => 'web'], function () {
     $admin = [
         'namespace' => 'Admin',
         'prefix' => config('route.prefix.admin'),
-       // 'middleware' => 'admin.auth'
     ];
 
     Route::group($admin, function () {
 
-        //Route::get('/', function () {
-        //    return view('admin.home');
-        //});
-        //Route::auth();
-        Route::get('/','AdminController@index');
-        Route::get('/login','AdminController@login');
+        Route::auth();
+        Route::group(['middleware' => 'admin.auth'], function () {
+            Route::get('/', 'AdminController@index');
 
-        Route::controllers([
-            'auth' => 'Auth\AuthController',
-            'password' => 'Auth\PasswordController',
-        ]);
 
+        });
     });
 
 

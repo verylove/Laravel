@@ -7,12 +7,6 @@ use Illuminate\Support\Facades\Auth;
 
 class Authenticate
 {
-
-    protected $except = [
-        'login'
-    ];
-
-
     /**
      * Handle an incoming request.
      *

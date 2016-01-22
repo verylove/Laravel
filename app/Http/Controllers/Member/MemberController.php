@@ -12,10 +12,10 @@ class MemberController extends Controller
      *
      * @return void
      */
-//    public function __construct()
-//    {
-//        $this->middleware('member.auth');
-//    }
+    public function __construct()
+    {
+        $this->middleware('member.auth');
+    }
 
     /**
      * Show the application dashboard.
@@ -27,8 +27,8 @@ class MemberController extends Controller
         return view('home');
     }
 
-    public function login()
-    {
-        return view('member.auth.login');
-    }
+//    public function login()
+//    {
+//        return view('member.auth.login');
+//    }
 }
