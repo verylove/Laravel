@@ -19,6 +19,7 @@ Route::get('/home', function () {
     return view('welcome');
 });
 
+Route::resource('article', 'ArticleController');
 
 
 /*

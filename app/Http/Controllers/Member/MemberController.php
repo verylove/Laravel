@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Member;
 
+use Cache;
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use App\Http\Models\Users as MUser;
 
 class MemberController extends Controller
 {
@@ -24,11 +26,32 @@ class MemberController extends Controller
      */
     public function index()
     {
-        return view('home');
+
+
+        $value = MUser::getUser(1);
+        echo '-------';
+        echo $value;exit;
+        //return view('home');
     }
 
 //    public function login()
 //    {
 //        return view('member.auth.login');
 //    }
+
+
+    /**
+     * Show the profile for the given user.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function showProfile($id)
+    {
+        $user = Cache::get('user:'.$id);
+
+        return view('profile', ['user' => $user]);
+    }
+
+
 }
