@@ -8,6 +8,9 @@
     5.单点登陆功能
     6.日志记录
 
+注意：
+    1. 安装　memcached　安装php5-memcached ,看清楚了不是php5-memcache，最后有个d !!
+    2. 主目录配置到public下
 
 ###框架使用步骤：
     1. 下载github版本代码到本地（首先配置好composer,git,nginx,php,mysql等环境)

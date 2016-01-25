@@ -5,11 +5,21 @@ namespace App\Http\Models;
 use Illuminate\Database\Eloquent\Model;
 use Cache;
 
-class Users extends Model
+class Users extends CommonModel
 {
     public $table = 'users';
 
-    public static function getUser($id)
+
+    public function add($data){
+
+        $data['name'] = 'tt';
+        $data['email'] = 'tt';
+        $data['password'] = 'tt';
+        $result = $this->add($data);
+        return $result;
+    }
+
+    public static function addUser($id)
     {
 
         $key = 'key_id_'.$id;
@@ -20,8 +30,11 @@ class Users extends Model
         }
 
 
+
         Cache::forever($key, 'value');
 
         return 'value--';
     }
+
+
 }

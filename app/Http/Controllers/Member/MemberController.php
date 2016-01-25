@@ -28,9 +28,11 @@ class MemberController extends Controller
     {
 
 
-        $value = MUser::getUser(1);
+        $users = new MUser();
+        echo $users->add();
+
         echo '-------';
-        echo $value;exit;
+        exit;
         //return view('home');
     }
 
